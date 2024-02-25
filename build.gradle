@@ -1,0 +1,50 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+buildscript {
+    ext.kotlin_version = "1.9.0"
+    ext.jvm_version = 17
+    ext.kotlinter_version = "3.15.0"
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id 'application'
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
+    id 'org.jmailen.kotlinter' version "$kotlinter_version"
+}
+
+group = 'uk.ac.ic.doc'
+version = '1.0.0'
+
+description = """Kotlin Queues"""
+
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "$jvm_version"
+    }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(jvm_version))
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
+
+test {
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
+}
