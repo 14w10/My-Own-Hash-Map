@@ -1,6 +1,5 @@
 package maps
 
-/*
 import java.util.concurrent.locks.Lock
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -168,4 +167,3 @@ abstract class ThreadSafeCustomMutableMapTest {
         )
     }
 }
-*/
